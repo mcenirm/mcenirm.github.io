@@ -1,0 +1,47 @@
+<!doctype html>
+<title>Bad random word generator</title>
+<button id='another'>Another one</button>
+<span id='xebal'></span>
+<script>
+  // return random integer in [0,n-1]
+  function r(n) {
+    return Math.floor(n * Math.random());
+  }
+
+  // return random index from array
+  function rr(a) {
+    return r(a.length);
+  }
+
+  // return random item from array
+  function rrr(a) {
+    return a[rr(a)];
+  }
+
+  // generate a bad random word
+  function xebal() {
+    var N = 5;
+    var V = 'aeiouy'.split('');
+    var C = 'bcdfghklmnprstvzx'.split('');
+    var s = '';
+    var i = N;
+    while (i > 0) {
+      s += rrr(C);
+      i--;
+      if (i > 0) {
+        s += rrr(V);
+        i--;
+      }
+    }
+    return s;
+  }
+
+  (function () {
+    var x = document.getElementById('xebal');
+    var a = document.getElementById('another');
+    a.onclick = function() {
+      x.textContent = xebal();
+    };
+    a.click();
+  })();
+</script>
